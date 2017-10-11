@@ -35,12 +35,26 @@ class ClassNew extends PureComponent {
     if (this.validateAll()) {
       const batch = {
         batchnumber: this.refs.batchnumber.getValue(),
-        startdate: this.refs.startdate.getValue(),
-        enddate: this.refs.enddate.getValue()
+        startdate: this.state.startdate,
+        enddate: this.state.enddate
       }
       this.props.signUp(batch)
     }
     return false
+  }
+
+  // PENDING: Date needs to be selected twice before input is recorded
+  _handleStartInput(event, date) {
+    this.setState({
+      startdate: date
+    })
+  }
+
+  // PENDING: Date needs to be selected twice before input is recorded
+  _handleEndInput(event, date) {
+    this.setState({
+      enddate: date
+    });
   }
 
   // signIn() {
@@ -48,24 +62,22 @@ class ClassNew extends PureComponent {
   // }
 
   validateAll() {
-    return this.validateName() &&
-      this.validatePicture() // &&
-      // this.validatePassword() &&
-      // this.validatePasswordConfirmation()
+    return this.validateBatchNumber()
   }
 
-  validateName() {
-    const { name } = this.refs
+  // PENDING: Check input against the greatest batchnumber fetched from API
+  validateBatchNumber() {
+    const { batchnumber } = this.refs
 
-    if (name.getValue().length > 1) {
+    if (batchnumber.getValue().length > 0) {
       this.setState({
-        nameError: null
+        batchnumberError: null
       })
       return true
     }
 
     this.setState({
-      nameError: 'Please provide your name'
+      batchnumberError: 'Please provide a batch number'
     })
     return false
   }
@@ -78,23 +90,30 @@ class ClassNew extends PureComponent {
         <form onSubmit={this.submitForm.bind(this)}>
           <div className="input">
             <TextField ref="batchnumber" type="text" hintText="Batch #number"
-              onChange={this.validateName.bind(this)}
-              errorText={ this.state.nameError} />
+              onChange={this.validateBatchNumber.bind(this)}
+              errorText={this.state.batchnumberError} />
           </div>
           <div className="input">
-            <DatePicker ref="startdate" hintText="Start date" />
+            <DatePicker
+              ref="startdate"
+              hintText="Start date"
+              onChange={this._handleStartInput.bind(this)} />
           </div>
           <div className="input">
-            <DatePicker ref="enddate" hintText="End date" />
+            <DatePicker
+              ref="enddate"
+              hintText="End date"
+              onChange={this._handleEndInput.bind(this)} />
           </div>
         </form>
+
         <FlatButton
           // onClick={ this.signIn.bind(this) }
           label="" />
         <RaisedButton
           style={ buttonStyle }
           onClick={ this.submitForm.bind(this) }
-          label="Create class"
+          label="Create batch"
           primary={true} />
       </Paper>
     )
