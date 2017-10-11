@@ -19,6 +19,8 @@ class StudentShowEdit extends PureComponent {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
+    var date = new Date();
+
     return (
       <div className="StudentShowEdit">
         <p>Show student detail page and form to enter evaluation</p>
@@ -38,7 +40,10 @@ class StudentShowEdit extends PureComponent {
         </ListItem>
 
         <div>
-          <DatePicker hintText="Portrait Dialog" />
+          <DatePicker
+            hintText="Portrait Dialog"
+            defaultDate={date}
+          />
         </div>
 
         <TextField
