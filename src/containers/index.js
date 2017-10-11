@@ -6,6 +6,7 @@ import Classes from './Classes'
 import Students from './Students'
 import StudentNew from './StudentNew'
 import StudentShowEdit from './StudentShowEdit'
+import ClassNew from './ClassNew'
 
 export {
   Game,
@@ -15,5 +16,6 @@ export {
   Classes,
   Students,
   StudentNew,
-  StudentShowEdit
+  StudentShowEdit,
+  ClassNew
 }

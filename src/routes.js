@@ -9,7 +9,8 @@ import {
   Classes,
   Students,
   StudentNew,
-  StudentShowEdit
+  StudentShowEdit,
+  ClassNew
 } from './containers'
 
 export default class Routes extends Component {
@@ -19,6 +20,7 @@ export default class Routes extends Component {
         <Route exact path="/" component={Lobby} />
         <Route path="/play/:gameId" component={Game} />
         <Route path="/classes" component={Classes} />
+        <Route path="/classes/new" component={ClassNew} />
         <Route path="/classes/:classId/students" component={Students} />
         <Route path="/classes/:classId/student/new" component={StudentNew} />
         <Route path="/classes/:classId/student/:studentId" component={StudentShowEdit} />
