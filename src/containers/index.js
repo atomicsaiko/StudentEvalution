@@ -3,11 +3,17 @@ import Lobby from './Lobby'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Classes from './Classes'
+import Students from './Students'
+import StudentNew from './StudentNew'
+import StudentShowEdit from './StudentShowEdit'
 
 export {
   Game,
   Lobby,
   SignIn,
   SignUp,
-  Classes
+  Classes,
+  Students,
+  StudentNew,
+  StudentShowEdit
 }

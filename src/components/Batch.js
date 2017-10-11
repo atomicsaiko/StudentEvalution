@@ -5,12 +5,12 @@ class Batch extends PureComponent {
     const style = {
       border: "1px solid black",
       width: "150px",
-      "text-align": "center",
+      textAlign: "center",
       margin: "8px"
     }
 
     const date = {
-      "font-size": "0.7em"
+      fontSize: "0.7em"
     }
 
     return (
