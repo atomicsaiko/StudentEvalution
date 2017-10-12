@@ -34,8 +34,9 @@ class StudentShowEdit extends PureComponent {
 
   componentWillMount() {
     const { fetchStudent, fetchStudentScores } = this.props
-    // fetchStudent()
-    // fetchStudentScores()
+    const { studentId } = this.props.match.params
+    // fetchStudent(studentId)
+    // fetchStudentScores(studentId)
   }
 
   colorCodeParse(value) {
@@ -90,8 +91,10 @@ class StudentShowEdit extends PureComponent {
               />
             }
           >
-          Jane Doe
+          {/* Jane Doe */}
+          {this.props.student.name}
           <p>Batch #1</p>
+          {/* <p>Batch #{this.props.student.class.name}</p> */}
           </ListItem>
 
           <DatePicker

@@ -4,12 +4,12 @@ export const FETCHED_STUDENT = 'FETCHED_STUDENT'
 
 const api = new API()
 
-export default () => {
+export default (studentId) => {
   return (dispatch) => {
     console.log("Connecting to Students service")
     const backend = api.service('students')
 
-    backend.find()
+    backend.get(studentId)
     .then((result) => {
       console.log(result)
       // debugger
