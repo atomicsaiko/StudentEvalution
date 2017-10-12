@@ -6,16 +6,41 @@ import Button from '../components/Button'
 
 class Classes extends PureComponent {
   componentWillMount() {
+    const { fetchClasses } = this.props
     fetchClasses()
   }
 
+  /*
+    Could move this functionality to the backend as an after-hook to perform
+    the date formatting after retrieving the data. Function not yet working.
+  */
+  formatDate(date) {
+    var datex = Date.parse(date);
+    var day = datex.getDate();
+    var month = datex.getMonth();
+    var year = datex.getFullYear();
+
+    return day + ' ' + month + ' ' + year;
+  }
+
+  renderClass(batch, index) {
+    return (
+      <Batch
+        key={index}
+        batchnumber={batch.name}
+        startdate={batch.start_date}
+        enddate={batch.end_date} />
+    )
+  }
+
   render() {
-    console.log("Props :", this.props)
     return (
       <div className="Classes">
         <Batch batchnumber="10" students="10" startdate="01-01-2019" enddate="01-03-2019" />
         <Batch batchnumber="11" students="12" startdate="01-01-2019" enddate="01-03-2019" />
         <Batch batchnumber="12" students="21" startdate="01-01-2019" enddate="01-03-2019" />
+        <p>Below here testing map function</p>
+        { this.props.classes.map(this.renderClass.bind(this))}
         <Button label="Create Batch" />
       </div>
     )
