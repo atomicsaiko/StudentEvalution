@@ -11,10 +11,21 @@ import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
 import ListItem from 'material-ui/List/ListItem';
 import DatePicker from 'material-ui/DatePicker';
+import Title from '../components/ui/Title'
+import Paper from 'material-ui/Paper';
 
 const style = {
-  margin: 12,
+  margin: '12',
+  position: 'relative',
+  top: '-66px',
+  left: '-100px',
 };
+
+const dialogStyle = {
+  width: '600px',
+  margin: '50px auto',
+  padding: '2rem',
+}
 
 class StudentShowEdit extends PureComponent {
   state = {
@@ -57,51 +68,52 @@ class StudentShowEdit extends PureComponent {
     var date = new Date();
 
     return (
-      <div className="StudentShowEdit">
-        <p>Show student detail page and form to enter evaluation</p>
-        {/* setup bar with color codes */}
-        <ListItem
-          disabled={true}
-          leftAvatar={
-            <Avatar
-              src="https://cdn-img.easyicon.net/png/5488/548873.gif"
-              size={50}
-              style={style}
-            />
-          }
-        >
-        <p>Jane Doe</p>
-        <p>Batch #1</p>
-        </ListItem>
+      <form onSubmit={this.submitForm.bind(this)}>
+        <Paper style={ dialogStyle }>
+          <Title content="Add Student evaluation" level={2} />
+          {/* setup bar with color codes */}
+          <ListItem
+            disabled={true}
+            leftAvatar={
+              <Avatar
+                src="https://cdn-img.easyicon.net/png/5488/548873.gif"
+                size={50}
+                style={style}
+              />
+            }
+          >
+          Jane Doe
+          <p>Batch #1</p>
+          </ListItem>
 
-        <div>
           <DatePicker
             hintText="Portrait Dialog"
             defaultDate={date}
             onChange={this._handleDateInput.bind(this)}
           />
-        </div>
 
-        <TextField
-          hintText="Enter remark"
-          floatingLabelText="Remark"
-          multiLine={true}
-          rows={6}
-        /><br />
+          <TextField
+            hintText="Enter remark"
+            floatingLabelText="Remark"
+            multiLine={true}
+            rows={6}
+            ref="remark"
+          /><br />
 
-        <SelectField
-          floatingLabelText="Frequency"
-          value={this.state.value}
-          onChange={this.handleChange}
-        >
-          <MenuItem value={1} primaryText="RED" />
-          <MenuItem value={2} primaryText="YELLOW" />
-          <MenuItem value={3} primaryText="GREEN" />
-        </SelectField>
-
-        <RaisedButton label="Save" primary={true} style={style} />
-        <RaisedButton label="Save and Next" secondary={true} style={style} />
-      </div>
+          <SelectField
+            floatingLabelText="Color Code"
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            <MenuItem value={1} primaryText="RED" />
+            <MenuItem value={2} primaryText="YELLOW" />
+            <MenuItem value={3} primaryText="GREEN" />
+          </SelectField>
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <RaisedButton label="Save" primary={true} style={style} />
+          <RaisedButton label="Save and Next" secondary={true} style={style} />
+        </Paper>
+      </form>
     )
   }
 }
