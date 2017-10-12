@@ -1,6 +1,6 @@
 import API from '../../api'
 
-export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
+export const FETCHED_STUDENT = 'FETCHED_STUDENT'
 
 const api = new API()
 
@@ -14,7 +14,7 @@ export default () => {
       console.log(result)
       // debugger
       dispatch({
-        type: FETCHED_STUDENTS,
+        type: FETCHED_STUDENT,
         payload: result // unknown why .data is not needed!
       })
     })

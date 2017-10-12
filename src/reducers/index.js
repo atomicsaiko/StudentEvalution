@@ -7,6 +7,9 @@ import currentGame from './currentGame'
 import subscriptions from './subscriptions'
 import classes from './classes'
 import students from './students'
+import scores from './scores'
+import studentscores from './studentscores'
+import student from './student'
 
 export default {
   games,
@@ -16,5 +19,8 @@ export default {
   currentGame,
   subscriptions,
   classes,
-  students
+  students,
+  scores,
+  studentscores,
+  student
 }

@@ -1,4 +1,9 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import createStudentEvaluation from '../actions/students/createEvaluation'
+import createScoreEvaluation from '../actions/scores/createEvaluation'
+import fetchStudent from '../actions/students/fetchSingleStudent'
+import fetchStudentScores from '../actions/scores/fetchStudentScores'
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
@@ -15,6 +20,36 @@ class StudentShowEdit extends PureComponent {
   state = {
     value: 1,
   };
+
+  componentWillMount() {
+    const { fetchStudent, fetchStudentScores } = this.props
+    // fetchStudent()
+    // fetchStudentScores()
+  }
+
+  submitForm(event) {
+    event.preventDefault()
+    if (this.validateAll()) {
+      const studentevaluation = {
+        name: this.refs.batchnumber.getValue(),
+        start_date: this.state.startdate,
+        end_date: this.state.enddate
+      }
+      const scoresevaluation = {
+
+      }
+      this.props.createStudentEvaluation(studentevaluation)
+      this.props.createScoreEvaluation(scoresevaluation)
+    }
+    console.log("Clicked button")
+    return false
+  }
+
+  _handleDateInput(event, date) {
+    this.setState({
+      date: date
+    })
+  }
 
   handleChange = (event, index, value) => this.setState({value});
 
@@ -43,6 +78,7 @@ class StudentShowEdit extends PureComponent {
           <DatePicker
             hintText="Portrait Dialog"
             defaultDate={date}
+            onChange={this._handleDateInput.bind(this)}
           />
         </div>
 
@@ -70,4 +106,9 @@ class StudentShowEdit extends PureComponent {
   }
 }
 
-export default StudentShowEdit
+const mapStateToProps = ({ student, studentscores }) => ({
+  student,
+  studentscores
+})
+
+export default connect(mapStateToProps, {createStudentEvaluation, createScoreEvaluation, fetchStudent, fetchStudentScores})(StudentShowEdit)
