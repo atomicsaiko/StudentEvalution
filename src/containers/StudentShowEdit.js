@@ -38,24 +38,32 @@ class StudentShowEdit extends PureComponent {
     // fetchStudentScores()
   }
 
+  colorCodeParse(value) {
+    var colorCodeIndex = [null, 'RED', 'YELLOW', 'GREEN']
+
+    return colorCodeIndex[value]
+  }
+
   submitForm(event) {
     event.preventDefault()
     if (this.validateAll()) {
       const studentevaluation = {
-        name: this.refs.batchnumber.getValue(),
-        start_date: this.state.startdate,
-        end_date: this.state.enddate
+        _id: this.props.student._id, // Verify!
+        remark: this.refs.remark.getValue()
       }
       const scoresevaluation = {
-
+        date: this.state.date,
+        color_code: this.colorCodeParse(this.state.value)
       }
-      this.props.createStudentEvaluation(studentevaluation)
-      this.props.createScoreEvaluation(scoresevaluation)
+      this.props.createStudentEvaluation(studentevaluation) // Create or Patch at API
+      this.props.createScoreEvaluation(scoresevaluation) // Create at API
     }
     console.log("Clicked button")
     return false
   }
 
+  // PENDING: Date is not captured if the date selector hasn't been opened by user.
+  // Even though default is prepopulated by current date.
   _handleDateInput(event, date) {
     this.setState({
       date: date
