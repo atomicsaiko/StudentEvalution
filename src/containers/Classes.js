@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import fetchClasses from '../actions/classes/fetch'
+import fetchStudents from '../actions/students/fetch'
 import Batch from '../components/Batch'
 import Button from '../components/Button'
 
 class Classes extends PureComponent {
   componentWillMount() {
-    const { fetchClasses } = this.props
+    const { fetchClasses, fetchStudents } = this.props
     fetchClasses()
+    fetchStudents()
   }
 
   /*
@@ -34,6 +36,7 @@ class Classes extends PureComponent {
   }
 
   render() {
+    console.log("lala", this.props.students.length)
     return (
       <div className="Classes">
         <Batch batchnumber="10" students="10" startdate="01-01-2019" enddate="01-03-2019" />
@@ -47,8 +50,9 @@ class Classes extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ classes }) => ({
-  classes
+const mapStateToProps = ({ classes, students }) => ({
+  classes,
+  students
 })
 
-export default connect(mapStateToProps, {fetchClasses})(Classes)
+export default connect(mapStateToProps, {fetchClasses, fetchStudents})(Classes)

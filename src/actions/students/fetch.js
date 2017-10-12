@@ -1,19 +1,20 @@
 import API from '../../api'
 
-export const FETCHED_CLASSES = 'FETCHED_CLASSES'
+export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
 
 const api = new API()
 
 export default () => {
   return (dispatch) => {
-    console.log("Connecting to Classes service")
-    const backend = api.service('classes')
+    console.log("Connecting to Students service")
+    const backend = api.service('students')
 
     backend.find()
     .then((result) => {
       console.log(result)
+      debugger
       dispatch({
-        type: FETCHED_CLASSES,
+        type: FETCHED_STUDENTS,
         payload: result.data
       })
     })

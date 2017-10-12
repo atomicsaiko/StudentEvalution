@@ -6,6 +6,7 @@ import currentUser from './currentUser'
 import currentGame from './currentGame'
 import subscriptions from './subscriptions'
 import classes from './classes'
+import students from './students'
 
 export default {
   games,
@@ -15,4 +16,5 @@ export default {
   currentGame,
   subscriptions,
   classes,
+  students
 }
