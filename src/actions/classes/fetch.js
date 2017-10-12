@@ -12,6 +12,7 @@ export default () => {
     backend.find()
     .then((result) => {
       console.log(result)
+      // debugger
       dispatch({
         type: FETCHED_CLASSES,
         payload: result.data
