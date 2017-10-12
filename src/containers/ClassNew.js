@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
-// import { push } from 'react-router-redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
-import signUp from '../actions/user/sign-up'
+// import FlatButton from 'material-ui/FlatButton'
+// import signUp from '../actions/user/sign-up'
 import Title from '../components/ui/Title'
 import DatePicker from 'material-ui/DatePicker';
+import createClass from '../actions/classes/create'
 
 const dialogStyle = {
   width: '400px',
@@ -25,7 +26,7 @@ const buttonStyle = {
 class ClassNew extends PureComponent {
   static propTypes = {
     push: PropTypes.func.isRequired,
-    signUp: PropTypes.func.isRequired,
+    createClass: PropTypes.func.isRequired,
   }
 
   state = {}
@@ -34,12 +35,17 @@ class ClassNew extends PureComponent {
     event.preventDefault()
     if (this.validateAll()) {
       const batch = {
-        batchnumber: this.refs.batchnumber.getValue(),
-        startdate: this.state.startdate,
-        enddate: this.state.enddate
+        // batchnumber: this.refs.batchnumber.getValue(),
+        // startdate: this.state.startdate,
+        // enddate: this.state.enddate
+
+        name: this.refs.batchnumber.getValue(),
+        start_date: this.state.startdate,
+        end_date: this.state.enddate
       }
-      this.props.signUp(batch)
+      this.props.createClass(batch)
     }
+    console.log("Clicked button")
     return false
   }
 
@@ -107,9 +113,9 @@ class ClassNew extends PureComponent {
           </div>
         </form>
 
-        <FlatButton
+        {/* <FlatButton
           // onClick={ this.signIn.bind(this) }
-          label="" />
+          label="" /> */}
         <RaisedButton
           style={ buttonStyle }
           onClick={ this.submitForm.bind(this) }
@@ -120,4 +126,6 @@ class ClassNew extends PureComponent {
   }
 }
 
-export default ClassNew
+// export default ClassNew
+
+export default connect(null, { createClass, push })(ClassNew)

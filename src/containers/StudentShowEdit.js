@@ -24,7 +24,7 @@ class StudentShowEdit extends PureComponent {
     return (
       <div className="StudentShowEdit">
         <p>Show student detail page and form to enter evaluation</p>
-
+        {/* setup bar with color codes */}
         <ListItem
           disabled={true}
           leftAvatar={
