@@ -15,7 +15,7 @@ export default () => {
       // debugger
       dispatch({
         type: FETCHED_STUDENTS,
-        payload: result // unknown why .data is not needed!
+        payload: result.data // unknown why .data is not needed!
       })
     })
     .catch((error) => {

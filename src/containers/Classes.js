@@ -16,6 +16,7 @@ class Classes extends PureComponent {
 
     this.setState({
       randomStudent: '',
+      randomStudentName: '',
     })
   }
 
@@ -85,14 +86,25 @@ class Classes extends PureComponent {
     }
 
     var randomStudent = randomStudents[this.getRandomInt(0, QUESTION_COUNT-1)]['student']
+    var randomStudentName = this.findStudentName(randomStudent) //
 
     console.log("Random student chosen: ", randomStudent)
+    console.log("Random student chosen (name): ", randomStudentName)
 
     this.setState({
-      randomStudent: randomStudent
+      randomStudent: randomStudent,
+      randomStudentName: randomStudentName
     })
 
     return randomStudents[this.getRandomInt(0, QUESTION_COUNT-1)];
+  }
+
+  findStudentName(objectid) {
+    var studentsArray = this.props.students
+    var student = studentsArray.find((student) => student._id === objectid )
+    // debugger
+
+    return student.name
   }
 
   render() {
@@ -108,6 +120,7 @@ class Classes extends PureComponent {
         <RaisedButton label="Ask a random Student" onClick={this.getRandomStudent2.bind(this)} secondary={true} />
         {/* <RaisedButton label="Ask a random Student" onClick={this.askRandomStudent.bind(this)} secondary={true} /> */}
         <p>Random student will be: {this.state.randomStudent}</p>
+        <p>Random student will be: {this.state.randomStudentName}</p>
       </div>
     )
   }
