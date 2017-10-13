@@ -124,6 +124,7 @@ class StudentShowEdit extends PureComponent {
           <br /><br /><br /><br /><br /><br /><br /><br />
           <RaisedButton label="Save" primary={true} style={style} />
           <RaisedButton label="Save and Next" secondary={true} style={style} />
+          <RaisedButton label="Delete" secondary={true} style={style} />
         </Paper>
       </form>
     )
