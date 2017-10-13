@@ -7,7 +7,7 @@ const api = new API()
 export default () => {
   return (dispatch) => {
     console.log("Connecting to Scores service")
-    const backend = api.service('classes')
+    const backend = api.service('scores')
 
     backend.find()
     .then((result) => {

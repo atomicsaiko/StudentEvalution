@@ -4,6 +4,7 @@ import createStudentEvaluation from '../actions/students/createEvaluation'
 import createScoreEvaluation from '../actions/scores/createEvaluation'
 import fetchStudent from '../actions/students/fetchSingleStudent'
 import fetchStudentScores from '../actions/scores/fetchStudentScores'
+import StudentScoreBar from '../components/StudentScoreBar'
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
@@ -80,7 +81,7 @@ class StudentShowEdit extends PureComponent {
       <form onSubmit={this.submitForm.bind(this)}>
         <Paper style={ dialogStyle }>
           <Title content="Add Student evaluation" level={2} />
-          {/* setup bar with color codes */}
+          <StudentScoreBar /><br /><br />
           <ListItem
             disabled={true}
             leftAvatar={
